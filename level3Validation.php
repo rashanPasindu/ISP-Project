@@ -24,7 +24,7 @@ if (isset($level_key)) {
 		}
 		else{
 			while ($row = mysqli_fetch_array($query)){
-				if ($row['key_level1'==$level_key])
+				if ($row['key_level3'==$level_key])
 				{
 					header("location: Level4.php");
 				}
@@ -71,7 +71,7 @@ function reload(){
 	}
 	else {
 		echo '<script>alert("Out Of Tries")</script>';
-		header("location: Level2.1.php");
+		header("location: Level2.php");
 	}
 
 }	

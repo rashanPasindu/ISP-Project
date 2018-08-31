@@ -28,7 +28,7 @@ if($_SESSION["tokens"] != 0){
   }
 else if($_SESSION["tokens"] == 0){
 	?>
-	<script>alert("OUt of Tries, Try Again!")</script>
+	<script>alert("Out of Tries, Try Again!")</script>
 	<?php
       header('location: Level2.1.php');
   }

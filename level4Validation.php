@@ -24,7 +24,7 @@ if (isset($level_key)) {
 		}
 		else{
 			while ($row = mysqli_fetch_array($query)){
-				if ($row['key_level1'==$level_key])
+				if ($row['key_level4'==$level_key])
 				{
 					header("location: Level5.php");
 				}
@@ -62,7 +62,7 @@ function reload(){
 		
 		//sleep(5);
 		if($_SESSION["tokens"] != 5 ){
-			header('location: Level2.php');
+			header('location: Level4.php');
  		 }
 		else{
 			echo "Session Variable not set";

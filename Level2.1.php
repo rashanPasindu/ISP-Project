@@ -4,14 +4,14 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 $value = 5;
 
-if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level2.php'){
+if ($_SERVER['HTTP_REFERER'] == '/ISP/Level2.php'){
 	
 	if ($_SESSION["tokens"] == 0 || $_SESSION["tokens"] < 5){
 		$_SESSION["tokens"] = $value;
 	}	
 }
 
-else if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level3.php'){
+else if ($_SERVER['HTTP_REFERER'] == '/ISP/Level3.php'){
 	
 	if ($_SESSION["tokens"] == 0){
 		$_SESSION["tokens"] = $value;

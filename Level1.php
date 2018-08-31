@@ -6,7 +6,7 @@ $value = 5;
 
 if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/login.php'){
 	
-	if ($_SESSION["tokens"] == 0){
+	if ($_SESSION["tokens"] == 0 || $_SESSION["tokens"] < 5){
 		$_SESSION["tokens"] = $value;
 	}	
 }

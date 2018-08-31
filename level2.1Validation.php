@@ -16,7 +16,7 @@ echo "level 2.1 -> ";
 
 if (isset($level_key)) {
 		
-		$query = mysqli_query($con,"SELECT * FROM level2.1 WHERE key_level2.1='$level_key'");
+		$query = mysqli_query($con,"SELECT * FROM level2_1 WHERE key_level2_1='$level_key'");
 		if (mysqli_num_rows($query)==0) {
 			echo '<script>alert("Try again")</script>';
 			reload();

@@ -2,14 +2,40 @@
 session_start();
 error_reporting(E_ALL ^ E_NOTICE);
 
-$token;
+$value = 5;
 
-if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/sessionc.php'){
+if ($_SERVER['HTTP_REFERER'] == '/ISP/Level2.1.php'){
 
-	$token = $_SESSION['TOKENcount'];
+	if ($_SESSION["tokens"] == 0 || $_SESSION["tokens"] < 5)
+	{
+		$_SESSION["tokens"] = $value;
+	}	
 }
-else{
-	$token = 5;
+
+else if ($_SERVER['HTTP_REFERER'] == '/ISP/Level4.php'){
+	
+	if ($_SESSION["tokens"] == 0){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+if($_SESSION["tokens"] != 0){
+	$token = $_SESSION["tokens"];
+	?>
+	<script>var val = <?php echo $token ?> </script>
+	<?php
+	echo '<script>alert("Available tokens: "+val)</script>';
+  }
+else if($_SESSION["tokens"] == 0){
+	?>
+	<script>alert("OUt of Tries, Try Again!")</script>
+	<?php
+      header('location: Level2.1.php');
+  }
+
+else {
+	$_SESSION["tokens"] = $value;
+	$token = $_SESSION["tokens"];
 }
 
 ?>
@@ -33,13 +59,13 @@ else{
 	<body>
 	<h5 class="tokens" align="left" color="gray"> Available Tokens: <?php echo $token;?></h5><br>
 	<h2 class="form-signin-heading" align="center" color="gray">Level 3</h2><br>
- 	 <a href="files/DUMPdump.iso" download="=files/DUMPdump.iso">
+ 	 <a href="files/image.iso" download="=files/image.iso">
 		<img src="Images/dumpDump.jpg" alt="Level1" width="20%">
   </a>
 
 	<div class="container">
 
-		<form action="level1Validation.php" method="POST" class="form-signin">
+		<form action="level3Validation.php" method="POST" class="form-signin">
 				<label for="inputPassword" class="sr-only">KEY</label>
 				<input type="password" placeholder="Enter the flag" name="flag3" required id="inputflag" class="form-control"><br>
 				<button class="btn btn-primary btn-block" type="submit">Submit the Flag</button>

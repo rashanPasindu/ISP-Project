@@ -1,6 +1,41 @@
 <?php
 session_start();
+error_reporting(E_ALL ^ E_NOTICE);
 
+$value = 5;
+
+if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level2.php'){
+	
+	if ($_SESSION["tokens"] == 0 || $_SESSION["tokens"] < 5){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+else if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level3.php'){
+	
+	if ($_SESSION["tokens"] == 0){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+if($_SESSION["tokens"] != 0){
+	$token = $_SESSION["tokens"];
+	?>
+	<script>var val = <?php echo $token ?> </script>
+	<?php
+	echo '<script>alert("Available tokens: "+val)</script>';
+  }
+else if($_SESSION["tokens"] == 0){
+	?>
+	<script>alert("Out of Tries, Try Again!")</script>
+	<?php
+      header('location: Level2.php');
+  }
+
+else {
+	$_SESSION["tokens"] = $value;
+	$token = $_SESSION["tokens"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,17 +55,17 @@ session_start();
 
 
 	<body>
-
+	<h5 class="tokens" align="left" color="gray"> Available Tokens: <?php echo $token;?></h5><br>
 	<h2 class="form-signin-heading" align="center" color="gray">Level 2.1</h2><br>
- 	 <a href="files/crypto.txt" download="=files/crypto.txt">
+ 	 <a href="" download="">
 		<img src="Images/" alt="Level2.1" width="60%">
   </a>
 
 	<div class="container">
 
 		<form action="level2.1Validation.php" method="POST" class="form-signin">
-				<label for="inputPassword" class="sr-only">Password</label>
-				<input type="password" placeholder="Enter the flag" name="flag2.1" required id="inputflag" class="form-control"><br>
+				<label for="inputPassword" class="sr-only">KEY</label>
+				<input type="password" placeholder="Enter the flag" name="flag2_1" required id="inputflag" class="form-control"><br>
 				<button class="btn btn-primary btn-block" type="submit">Submit the Flag</button>
 
 		</form>

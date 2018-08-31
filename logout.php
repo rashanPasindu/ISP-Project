@@ -3,8 +3,10 @@
 session_start();
 
 unset($_SESSION['username']);
+unset($_SESSION['tokens']);
+
 session_destroy();
-session_unset();
+
 echo "LogOut Occured";
 header('location: index.php');
 

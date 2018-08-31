@@ -1,6 +1,41 @@
 <?php
 session_start();
+error_reporting(E_ALL ^ E_NOTICE);
 
+$value = 5;
+
+if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level1.php'){
+	
+	if ($_SESSION["tokens"] == 0 || $_SESSION["tokens"] < 5){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+else if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level2.1.php'){
+	
+	if ($_SESSION["tokens"] == 0){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+if($_SESSION["tokens"] != 0){
+	$token = $_SESSION["tokens"];
+	?>
+	<script>var val = <?php echo $token ?> </script>
+	<?php
+	echo '<script>alert("Available tokens: "+val)</script>';
+  }
+else if($_SESSION["tokens"] == 0){
+	?>
+	<script>alert("OUt of Tries, Try Again!")</script>
+	<?php
+      header('location: Level1.php');
+  }
+
+else {
+	$_SESSION["tokens"] = $value;
+	$token = $_SESSION["tokens"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +55,7 @@ session_start();
 
 
 	<body>
-
+	<h5 class="tokens" align="left" color="gray"> Available Tokens: <?php echo $token;?></h5><br>
 	<h2 class="form-signin-heading" align="center" color="gray">Level 2</h2><br>
  	 <a href="files/crypto.txt" download="=files/crypto.txt">
 		<img src="Images/pyramid_cipher.jpg" alt="Level2" width="60%">

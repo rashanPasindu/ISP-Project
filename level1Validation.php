@@ -13,8 +13,6 @@ $new;
 
 $level_key = $_POST['flag1'];
 
-
-
 if (isset($level_key)) {
 		
 		$query = mysqli_query($con,"SELECT * FROM level1 WHERE key_level1='$level_key'");
@@ -42,9 +40,15 @@ if (isset($level_key)) {
 function reload(){
 	if (!isset ($_SESSION["tokens"])){
 		$_SESSION["tokens"] = $GLOBALS['value'];
+		
+		token();
+	}
+	
+	else {
+		token();
 	}
 	//header("location: sessionc.php");
-	token();
+	
 }
 
 	function token(){
@@ -55,9 +59,9 @@ function reload(){
 		
 		echo "Your Available Tokens: ". $_SESSION["tokens"];
 		
-		sleep(5);
-		if($_SESSION["tokens"] != 5 and $_SESSION["tokens"] != 0 ){
-			header('location: sesssionc.php');
+		//sleep(5);
+		if($_SESSION["tokens"] != 5 ){
+			header('location: Level1.php');
  		 }
 		else{
 			echo "Session Variable not set";

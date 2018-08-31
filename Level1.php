@@ -1,19 +1,37 @@
 <?php
 session_start();
 error_reporting(E_ALL ^ E_NOTICE);
-//require 'sessionc.php';
 
 $value = 5;
 
-if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/level1Validation.php'){
-
-if($_SESSION["tokens"] >= 0){
-	$token = $_SESSION["tokens"];
-  }
-else {
-      header('location: http://' . $_SERVER['HTTP_HOST'] .'/login.php');
-  }
+if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/login.php'){
+	
+	if ($_SESSION["tokens"] == 0){
+		$_SESSION["tokens"] = $value;
+	}	
 }
+
+else if ($_SERVER['HTTP_REFERER'] == 'http://localhost/ISP_Project/pages/bootstrap/ISP/ISP/Level2.php'){
+	
+	if ($_SESSION["tokens"] == 0){
+		$_SESSION["tokens"] = $value;
+	}	
+}
+
+if($_SESSION["tokens"] != 0){
+	$token = $_SESSION["tokens"];
+	?>
+	<script>var val = <?php echo $token ?> </script>
+	<?php
+	echo '<script>alert("Available tokens: "+val)</script>';
+  }
+else if($_SESSION["tokens"] == 0){
+	?>
+	<script>alert("OUt of Tries, Try Again!")</script>
+	<?php
+      header('location: logout.php');
+  }
+
 else {
 	$_SESSION["tokens"] = $value;
 	$token = $_SESSION["tokens"];
